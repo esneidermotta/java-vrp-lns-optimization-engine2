@@ -29,6 +29,14 @@ public final class RoutingEngine {
     }
 
     public SearchResult solve(List<DeliveryJob> jobs, List<VehicleProfile> vehicles) {
+        if (jobs == null || jobs.isEmpty()) {
+            throw new IllegalArgumentException("Job list cannot be null or empty.");
+        }
+
+        if (vehicles == null || vehicles.isEmpty()) {
+            throw new IllegalArgumentException("Vehicle list cannot be null or empty.");
+        }
+
         Solution initial = initialSolutionBuilder.build(jobs, vehicles);
         return lns.improve(initial);
     }
