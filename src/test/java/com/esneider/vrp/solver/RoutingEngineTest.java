@@ -1,7 +1,9 @@
 package com.esneider.vrp.solver;
 
 import java.util.List;
-
+import com.esneider.vrp.model.DeliveryJob;
+import com.esneider.vrp.model.Location;
+import com.esneider.vrp.model.TimeWindow;
 import com.esneider.vrp.benchmark.BenchmarkRunner;
 import com.esneider.vrp.benchmark.BenchmarkResult;
 import org.junit.jupiter.api.Test;
@@ -48,6 +50,24 @@ final class RoutingEngineTest {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> engine.solve(List.of(), null)
+        );
+    }
+    @Test
+    void rejectsEmptyVehicleList() {
+        RoutingEngine engine = new RoutingEngine();
+
+        DeliveryJob job = new DeliveryJob(
+                "job-1",
+                new Location(0.0, 0.0),
+                1,
+                10,
+                new TimeWindow(0, 100),
+                1
+        );
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> engine.solve(List.of(job), List.of())
         );
     }
 }
