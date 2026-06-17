@@ -60,7 +60,6 @@ src/main/java/com/esneider/vrp/
     AdaptiveOperatorSelector.java
     SimulatedAnnealingAcceptance.java
     SolutionScorer.java
-    DistanceMatrix.java
 
   benchmark/
     BenchmarkRunner.java
