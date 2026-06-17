@@ -1,11 +1,12 @@
 package com.esneider.vrp.solver;
+
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.esneider.vrp.benchmark.BenchmarkRunner;
 import com.esneider.vrp.benchmark.BenchmarkResult;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class RoutingEngineTest {
@@ -27,6 +28,26 @@ final class RoutingEngineTest {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> engine.solve(List.of(), List.of())
+        );
+    }
+
+    @Test
+    void rejectsNullJobList() {
+        RoutingEngine engine = new RoutingEngine();
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> engine.solve(null, List.of())
+        );
+    }
+
+    @Test
+    void rejectsNullVehicleList() {
+        RoutingEngine engine = new RoutingEngine();
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> engine.solve(List.of(), null)
         );
     }
 }
